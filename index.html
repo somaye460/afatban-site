@@ -1,10 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>آفت‌بان</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:
+    radial-gradient(circle at center,
+    rgba(0,255,150,.15),
+    rgba(0,0,0,1) 70%);
+    background-color:#020806;
+    font-family:tahoma;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(0,255,180,.15);
+    filter:blur(120px);
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+}
+
+.fog{
+    position:absolute;
+    width:120%;
+    height:120%;
+    background:
+    radial-gradient(circle,
+    rgba(0,255,170,.08),
+    transparent 70%);
+    animation:fogMove 15s ease-in-out infinite alternate;
+}
+
+@keyframes fogMove{
+    from{
+        transform:translate(-5%,-5%) scale(1);
+    }
+    to{
+        transform:translate(5%,5%) scale(1.2);
+    }
+}
+
+.content{
+    text-align:center;
+    z-index:10;
+    color:white;
+}
+
+h1{
+    font-size:6rem;
+    text-shadow:
+    0 0 10px #00ff99,
+    0 0 30px #00ff99,
+    0 0 60px #00ff99;
+    animation:pulse 3s infinite;
+}
+
+p{
+    margin-top:15px;
+    font-size:1.3rem;
+    color:#cdebd8;
+    letter-spacing:1px;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.05);
+    }
+}
+</style>
 </head>
-<body style="background:black;color:white;text-align:center;padding-top:100px;">
-<h1>آفت‌بان</h1>
-<p>اولین سایت من</p>
+
+<body>
+
+<div class="fog"></div>
+<div id="glow"></div>
+
+<div class="content">
+    <h1>آفت‌بان</h1>
+    <p>راهکارهای نوین کنترل آفات خانگی</p>
+</div>
+
+<script>
+
+const glow = document.getElementById("glow");
+
+document.addEventListener("mousemove",(e)=>{
+
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+
+    document.body.style.filter =
+        `contrast(${1 + x*0.5})
+         brightness(${1 + y*0.3})`;
+});
+</script>
+
 </body>
 </html>
