@@ -109,26 +109,71 @@ body::before{
 
 .logo{
 
-    font-size:clamp(60px,10vw,130px);
+position:relative;
 
-    font-weight:900;
+display:inline-block;
 
-    letter-spacing:-2px;
+font-size:clamp(60px,10vw,130px);
 
-    background:
-    linear-gradient(
-        180deg,
-        #ffffff,
-        #dfe8f7
-    );
+font-weight:900;
 
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+letter-spacing:-2px;
 
-    text-shadow:
-    0 0 6px rgba(255,255,255,.10),
-    0 0 15px rgba(255,255,255,.06),
-    0 0 25px rgba(180,210,255,.04);
+overflow:hidden;
+
+}
+
+.logo span{
+
+background:
+linear-gradient(
+90deg,
+#ffffff 0%,
+#dfe8f7 40%,
+#ffffff 50%,
+#dfe8f7 60%,
+#ffffff 100%
+);
+
+background-size:300% auto;
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+animation:
+shineMove 6s linear infinite,
+logoGlow 4s ease-in-out infinite;
+
+}
+
+@keyframes shineMove{
+
+0%{
+background-position:-200% center;
+}
+
+100%{
+background-position:200% center;
+}
+
+}
+
+@keyframes logoGlow{
+
+0%,100%{
+filter:drop-shadow(
+0 0 8px rgba(255,255,255,.12)
+);
+}
+
+50%{
+filter:
+drop-shadow(
+0 0 15px rgba(255,255,255,.25)
+)
+drop-shadow(
+0 0 30px rgba(220,235,255,.12)
+);
 }
 
 .subtitle{
@@ -263,8 +308,8 @@ body::before{
 <div class="hero">
 
     <div class="logo">
-        آفت‌بان
-    </div>
+    <span>آفت‌بان</span>
+</div>
 
     <div class="subtitle">
         راهکارهای نوین کنترل آفات خانگی
